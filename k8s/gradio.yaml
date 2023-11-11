@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gradio
-        image: nginx:1.14.2
+        image: ghcr.io/kenthua/gradio-app:latest
         env:
         - name: MODEL_ID
           value: "meta-llama/Llama-2-7b-chat-hf"
@@ -38,3 +38,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 7860
+  type: LoadBalancer
