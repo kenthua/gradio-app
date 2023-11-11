@@ -5,7 +5,7 @@ metadata:
   labels:
     app: gradio
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: gradio
@@ -23,7 +23,7 @@ spec:
         - name: CONTEXT_PATH
           value: "/v1/chat/completions"
         - name: HOST
-          value: ${HOST}
+          value: "http://rayllm-head-svc:8080"
         ports:
         - containerPort: 7860
 ---
