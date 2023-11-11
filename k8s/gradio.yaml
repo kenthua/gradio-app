@@ -5,7 +5,7 @@ metadata:
   labels:
     app: gradio
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: gradio
@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
       - name: gradio
-        image: nginx:1.14.2
+        image: ghcr.io/kenthua/gradio-app:latest
         env:
         - name: MODEL_ID
           value: "meta-llama/Llama-2-7b-chat-hf"
         - name: CONTEXT_PATH
           value: "/v1/chat/completions"
         - name: HOST
-          value: ${HOST}
+          value: "http://rayllm-serve-svc:8000"
         ports:
         - containerPort: 7860
 ---
@@ -33,8 +33,9 @@ metadata:
   name: gradio
 spec:
   selector:
-    app.kubernetes.io/name: gradio
+    app: gradio
   ports:
     - protocol: TCP
       port: 80
       targetPort: 7860
+  type: LoadBalancer
