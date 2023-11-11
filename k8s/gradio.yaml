@@ -23,7 +23,7 @@ spec:
         - name: CONTEXT_PATH
           value: "/v1/chat/completions"
         - name: HOST
-          value: "http://rayllm-head-svc:8080"
+          value: "http://rayllm-serve-svc:8000"
         ports:
         - containerPort: 7860
 ---
@@ -33,7 +33,7 @@ metadata:
   name: gradio
 spec:
   selector:
-    app.kubernetes.io/name: gradio
+    app: gradio
   ports:
     - protocol: TCP
       port: 80
