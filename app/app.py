@@ -15,7 +15,7 @@ def inference_interface(message, history, model_temperature):
   json_message['messages'][1]["content"] = message
   json_message['temperature'] = model_temperature
 
-  print("request" + str(json_message))
+  print("request" + str(json_message), flush=True)
   response = requests.post(os.environ["HOST"] + os.environ["CONTEXT_PATH"], json=json_message)
   json_data = response.json()
   output = json_data["choices"][0]["message"]["content"]
